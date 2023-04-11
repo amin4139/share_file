@@ -1,0 +1,434 @@
+const maxConfigItems = 500
+var maxPerType = 100
+// آیا کانفیگ های دیگر ترکیب بشه یا فقط ورکر باشه
+const includeOriginalConfigs = true
+
+const subLinks = [
+  "https://raw.githubusercontent.com/AzadNetCH/Clash/main/V2Ray.txt",
+  "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg",
+  "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt",
+  "https://raw.githubusercontent.com/freefq/free/master/v2",
+  "https://freefq.neocities.org/free.txt",
+  "https://raw.githubusercontent.com/vpei/Free-Node-Merge/main/o/node.txt",
+  "https://sub.pmsub.me/base64",
+  "https://raw.githubusercontent.com/w1770946466/Auto_proxy/main/Long_term_subscription_num",
+  "https://raw.githubusercontent.com/Leon406/SubCrawler/main/sub/share/all2",
+  "https://raw.githubusercontent.com/nasheep/FreeNode/main/v2ray/PlayLab",
+  "https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss/main/v2ray/v2raysub",
+  "https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/v2ray.txt",
+  "https://raw.githubusercontent.com/supprise0408/V2RayAggregator/master/sub/sub_merge_base64.txt",
+  "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub",
+  "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2",
+  "https://raw.githubusercontent.com/luxl-1379/merge/77247d23def72b25226dfa741614e9b07a569c72/sub/sub_merge_base64.txt",
+  "https://raw.githubusercontent.com/hkaa0/permalink/e8f97142d083c0f5dac55af7b6531b300f273b4d/proxy/V2ray",
+]
+
+const cnfLinks = [
+  "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all",
+  "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/sub/sub_merge.txt",
+  "https://raw.githubusercontent.com/LalatinaHub/Mineral/master/result/nodes",
+  "https://raw.githubusercontent.com/kaoxindalao/v2raycheshi/main/v2raycheshi",
+  "https://raw.githubusercontent.com/mfuu/v2ray/master/merge/merge.txt",
+  "https://raw.githubusercontent.com/caijh/FreeProxiesScraper/52063dee9d0612a905d73a21e6743d2ce4cfa149/sub/sub_merge.txt",
+  "https://raw.githubusercontent.com/mfuu/v2ray/7e2f8163568519b3a1874bbbe1d03e7c30776f06/merge/merge.txt",
+  "https://raw.githubusercontent.com/baipiao250/HigeFreeProxies/5e4c8243629f9c5009ef837c31b23af2372d4868/sub/sub_merge.txt",
+  "https://raw.githubusercontent.com/Ennzo0/AC/4f4443774d1e999143d2753088e01e2ad4db90f0/configuration.txt",
+  "https://raw.githubusercontent.com/youkai53530100/youkai/ec35d8fdbdb4af0e6f7e75b56762633b32ad6067/sub/sub_merge.txt",
+  "https://raw.githubusercontent.com/HakurouKen/free-node/38d1a45848aa53b7fc00d12033b8df162d328aa0/public",
+  "https://raw.githubusercontent.com/rxsweet/proxies/54380efe2724b3de2be64af3bccac8d9473d1d6f/sub/sources/crawlTGnode.txt",
+  "https://raw.githubusercontent.com/HakurouKen/free-node/38d1a45848aa53b7fc00d12033b8df162d328aa0/public",
+  "https://raw.githubusercontent.com/cdddbc/getAirport/818ede0784be2eb54ddf560e7d82ba2159f7c7ae/sub/free/goodfree/goodfree",
+  "https://raw.githubusercontent.com/yukikazemiyuki/dingyue/01dff857a56ccb03d7fe40e30cdfe5dd4bb187cc/dizhi",
+  "https://raw.githubusercontent.com/wei/ssr-scraper/d65966820efba7ac86ad52b85e6d9c6915fb12d8/nodes.txt",
+  "https://raw.githubusercontent.com/Airuop/cross/58a438e2485b6aaf11b58c6a2d5e32a483e4fe21/sub/sub_merge.txt",
+ 
+  
+]
+// لینک آیپی شخصی
+const ownCleanIPLink = "..../ips.txt"
+//اپراتورها
+const operatorList = ["AST", "HWB", "IRC", "MBT", "MCI", "MKB", "PRS", "RTL", "SHT", "ZTL"]
+//لینک آدرس های تمیز
+const addressList = [ 
+  "discord.com",
+  "cloudflare.com",
+  "cdnjs.com",
+  "vimeo.com",
+  "namecheap.com",
+  "networksolutions.com",
+  "medium.com",
+  "creativecommons.org",
+  "cpanel.com",
+  "namebright.com",
+  "jsdelivr.com",
+  "yelp.com",
+  "shopify.com",
+  "arnebrachhold.de",
+  "packtpub.com",
+  "jquery.com",
+  "digitalocean.com",
+  "allaboutcookies.org",
+  "itch.io",
+  "attracta.com",
+  "openjsf.org",
+  "who.int",
+  "manning.com",
+  "jquery.org",
+  "elegantthemes.com",
+  "aboutcookies.org",
+  "homestead.com",
+  "bluehost.com",
+  "cogocast.net",
+  "namesilo.com",
+  "nodejs.org",
+  "sharray.net",
+  "domainmarket.com",
+  "digg.com",
+  "tinyurl.com",
+  "sourceforge.net",
+  "parallels.com",
+  "fonts.net",
+  "pirillo.com",
+  "moodle.org",
+  "chatsiteleri.name.tr",
+  "yetiskinsohbet.name.tr",
+  "sciencedirect.com",
+  "constantcontact.com",
+  "doi.org",
+  "discord.gg",
+  "opensource.org",
+  "nginx.com",
+  "joomla.org",
+  "blog.cloudflare.com",
+  "developers.cloudflare.com",
+  "1dot1dot1dot1.cloudflare-dns.com",
+  "one.one.one.one",
+  "community.cloudflare.com",
+  "portal.cloudflarepartners.com",
+  "speed.cloudflare.com",
+  "portal.cloudflarepartners.com",
+  "prestashop.com",
+  "medium.com",
+  "dictate.ms",
+  "www.speedtest.com"]
+const fpList = [ "chrome",
+  "chrome",
+  "chrome",
+  "firefox",
+  "safari",
+  "edge",
+  "ios",
+  "android",
+  "random",
+  "random"]
+const alpnList = ["http/1.1",
+  "h2,http/1.1",
+  "h2,http/1.1"]
+var cleanIPs = []
+// فقط از کانفیگ خودم استفاده کن
+const onlyUseMyConfigs = 0
+// لیست آیپی های تمیز از پروژه بچه ها
+const ipProviderLink = "https://raw.githubusercontent.com/vfarid/cf-clean-ips/main/list.json"
+// لیست کانفیگ های شخصی داخلی برای تست و ...
+const myConfigs = [
+"vmess://"
+]
+
+var cleanIPs = []
+
+export default {
+  async fetch(request) {
+    var url = new URL(request.url)
+    var pathParts = url.pathname.replace(/^\/|\/$/g, "").split("/")
+    var type = pathParts[0].toLowerCase()
+    if (["sub", "clash"].includes(type)) {
+      if (pathParts[1] !== undefined) {
+        var operator = pathParts[1].toUpperCase()
+        if (operatorList.includes(operator)) {
+           
+            var cleanIPsT = await fetch(ipProviderLink).then(r => r.json()).then(j => j.ipv4)
+            var ipList = cleanIPsT.filter(el => el.operator == operator).slice(0, 10)
+            for(var i in ipList){
+              
+              cleanIPs = cleanIPs.concat(ipList[i].ip)
+            }
+           
+        }else if (operator == 'OWNIP')
+        {
+          cleanIPs = await fetch(ownCleanIPLink).then(r => r.text()).then(t => t.split("\n"));
+          cleanIPs = cleanIPs.map(line => line.split(" ")[0].trim());
+        } 
+        else {
+         
+           cleanIPs = [operator.toLowerCase()]
+        }
+      }
+
+     
+
+      var configList = []
+      for (var subLink of subLinks) {
+        try {
+        configList = configList.concat(await fetch(subLink).then(r => r.text()).then(a => atob(a)).then(t => t.split("\n")))
+      } catch (e) { }
+      }
+      for (var cnfLink of cnfLinks) {
+        try {
+        configList = configList.concat(await fetch(cnfLink).then(r => r.text()).then(t => t.split("\n")))
+     } catch (e) { }
+      }
+      
+      var vmessConfigList = configList.filter(cnf => (cnf.search("vmess://") == 0))
+      
+      
+      var mergedConfigList = []
+      
+      if (type == "sub") {
+
+        if (onlyUseMyConfigs) {
+          if(cleanIPs.length){
+  for (var xip of cleanIPs) {
+            
+             if (myConfigs.length) {
+               vmessConfigList = myConfigs.filter(cnf => (cnf.search("vmess://") == 0)).map(decodeVmess)
+            mergedConfigList = mergedConfigList.concat(
+              vmessConfigList.map(cnf => mixConfig(cnf, url, "vmess", xip)).filter(cnf => (!!cnf && cnf.id)).map(encodeVmess).filter(cnf => !!cnf)
+            )
+               
+          }
+          
+          }
+          }
+          else{
+        for (var xip of addressList) {
+            
+             if (myConfigs.length) {
+               vmessConfigList = myConfigs.filter(cnf => (cnf.search("vmess://") == 0)).map(decodeVmess)
+            mergedConfigList = mergedConfigList.concat(
+              vmessConfigList.map(cnf => mixConfig(cnf, url, "vmess", xip)).filter(cnf => (!!cnf && cnf.id)).map(encodeVmess).filter(cnf => !!cnf)
+            )
+               
+          }
+          
+          }
+          }
+        
+
+        }else{
+
+ if (includeOriginalConfigs ) {
+           
+
+
+
+          var trojanConfigList = configList.filter(cnf => (cnf.search("trojan://") == 0))
+          var ssConfigList = configList.filter(cnf => (cnf.search("ss://") == 0))
+          var vlessConfigList = configList.filter(cnf => (cnf.search("vless://") == 0))
+          mergedConfigList = mergedConfigList.concat(getMultipleRandomElements(vlessConfigList, maxPerType))
+          mergedConfigList = mergedConfigList.concat(getMultipleRandomElements(vmessConfigList, maxPerType))
+          mergedConfigList = mergedConfigList.concat(getMultipleRandomElements(trojanConfigList, maxPerType))
+          mergedConfigList = mergedConfigList.concat(getMultipleRandomElements(ssConfigList, maxPerType))
+        }
+        else{
+          maxPerType = maxConfigItems
+        }
+
+      mergedConfigList = mergedConfigList.concat(
+          getMultipleRandomElements(
+            vmessConfigList.map(decodeVmess).map(cnf => mixConfig(cnf, url, "vmess",0)).filter(cnf => (!!cnf && cnf.id)).map(encodeVmess),
+            maxPerType
+          )
+        )
+       
+        }
+
+        
+      
+       
+       
+
+        return new Response(btoa(getMultipleRandomElements(mergedConfigList, maxConfigItems).join("\n")));
+      } else { // clash
+        // if (includeOriginalConfigs) {
+        //   mergedConfigList = mergedConfigList.concat(
+        //     getMultipleRandomElements(
+        //       vmessConfigList.map(decodeVmess).filter(cnf => (!!cnf && cnf.id)).map(cnf => toClash(cnf, "vmess")).filter(cnf => !!cnf),
+        //       maxPerType
+        //     )
+        //   )
+        // }
+        // mergedConfigList = mergedConfigList.concat(
+        //   getMultipleRandomElements(
+        //     vmessConfigList.map(decodeVmess).map(cnf => mixConfig(cnf, url, "vmess")).filter(cnf => (!!cnf && cnf.id)).map(cnf => toClash(cnf, "vmess")),
+        //     maxPerType
+        //   )
+        // )
+        // return new Response(toYaml(mergedConfigList));
+      }
+    } else {
+      var url = new URL(request.url)
+      var newUrl = new URL("https://" + url.pathname.replace(/^\/|\/$/g, ""))
+      return fetch(new Request(newUrl, request));
+    }
+  }
+}
+
+function encodeVmess(conf) {
+  try {
+    return "vmess://" + btoa(JSON.stringify(conf))
+  } catch {
+    return null
+  }
+}
+
+function decodeVmess(conf) {
+  try {
+    return JSON.parse(atob(conf.substr(8)))
+  } catch {
+    return {}
+  }
+}
+
+function mixConfig(conf, url, protocol, ip) {
+  try {
+     if (conf.tls != "tls") {
+       //conf.tls = "tls"
+       return {}
+     }
+    var addr = conf.sni
+   if (!addr) {
+      if (conf.add && !isIp(conf.add)) {
+        addr = conf.add
+      } else if (conf.host && !isIp(conf.host)) {
+        addr = conf.host
+      }
+    }
+    if (!addr) {
+      return {}
+    }
+    
+    conf.v = '2';
+    
+    conf.ps = 'FTN-'+(conf.name ? conf.name : conf.ps) + '-Worker'
+
+    conf.sni = url.hostname
+    //conf.sni = '.pages.dev'
+     
+     if (ip != 0) {
+         conf.add = ip
+      
+    }else{
+      if (cleanIPs.length) {
+        if(!isIp(cleanIPs[0])){
+          conf.add = cleanIPs[0];
+        }
+        else{
+        
+            conf.add = cleanIPs[Math.floor(Math.random() * cleanIPs.length)]
+        
+        }
+    } else{
+      conf.add = addressList[Math.floor(Math.random() * addressList.length)]
+    }
+    }
+
+    if(conf.add ==''){
+      conf.add = addressList[Math.floor(Math.random() * addressList.length)]
+    }
+     
+
+
+    
+    if (protocol == "vmess") {
+      conf.sni = url.hostname
+      conf.host = url.hostname
+      //conf.sni = '.pages.dev'
+      //conf.host = '.pages.dev'
+      if (conf.path == undefined) {
+        conf.path = ""
+      }
+      conf.path = "/" + addr + ":" + conf.port + "/" + conf.path.replace(/^\//g, "")
+      conf.fp = fpList[Math.floor(Math.random() * fpList.length)]
+      conf.alpn = alpnList[Math.floor(Math.random() * alpnList.length)]
+      conf.port = conf.port
+    }
+    return conf
+  } catch (e) {
+    return {}
+  }
+}
+
+function getMultipleRandomElements(arr, num) {
+  var shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
+}
+
+function isIp(str) {
+  try {
+    if (str == "" || str == undefined) return false;
+    if (!/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])){2}\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-4])$/.test(str)) {
+      return false;
+    }
+    var ls = str.split('.');
+    if (ls == null || ls.length != 4 || ls[3] == "0" || parseInt(ls[3]) === 0) {
+      return false;
+    }
+    return true;
+  } catch (e) { }
+  return false;
+}
+
+function toClash(conf, protocol) {
+  var config = {}
+  try {
+    config = {
+      name: conf.name ? conf.name : conf.ps,
+      type: protocol,
+      server: conf.add,
+      port: conf.port,
+      uuid: conf.id,
+      alterId: 0,
+      tls: true,
+      cipher: conf.cipher ? conf.cipher : "auto",
+      "skip-cert-verify": true,
+      servername: conf.sni,
+      network: conf.net,
+      "ws-opts": {
+        path: conf.path,
+        headers: {
+          host: conf.host
+        }
+      }
+    }
+    config.name = config.name.replace(/[^A-Za-z0-9\-\ ]/g, "") + " " + Math.floor(Math.random() * 10000)
+    return config
+  } catch (e) {
+    return conf
+  }
+}
+
+function toYaml(configList) {
+  var yaml = 
+`
+mixed-port: 7890
+allow-lan: true
+log-level: info
+external-controller: 0.0.0.0:9090
+dns:
+  enabled: true
+  nameserver:
+    - 1.1.1.1
+    - 4.2.2.4
+    - 119.29.29.29
+    - 223.5.5.5
+  fallback:
+    - 8.8.8.8
+    - 8.8.4.4
+    - tls://1.0.0.1:853
+    - tls://dns.google:853
+
+proxies:
+`
+  yaml = yaml + configList.map(cnf => "  - " + JSON.stringify(cnf)).join("\n")
+  return yaml
+}
