@@ -1,0 +1,128 @@
+{
+  "dns": {
+    "hosts": {
+      "domain:googleapis.cn": "googleapis.com"
+    },
+    "servers": [
+      {
+        "address": "fakedns",
+        "domains": [
+          "geosite:cn"
+        ]
+      },
+      "https://223.5.5.5/dns-query"
+    ]
+  },
+  "fakedns": [
+    {
+      "ipPool": "198.18.0.0/15",
+      "poolSize": 10000
+    }
+  ],
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "userLevel": 8
+      },
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls",
+          "fakedns"
+        ],
+        "enabled": true
+      },
+      "tag": "socks"
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {
+        "userLevel": 8
+      },
+      "tag": "http"
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 10853,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "1.1.1.1",
+        "network": "tcp,udp",
+        "port": 53
+      },
+      "tag": "dns-in"
+    }
+  ],
+  "log": {
+    "loglevel": "warning"
+  },
+  "outbounds": [
+    {
+            "protocol": "wireguard",
+            "settings": {
+                "secretKey": "private",
+                "address": [
+                    "172.16.0.2/32",
+                    "2606:4700:110:8998:e352:ba32:f6c3:e61e/128"
+                ],
+                "peers": [
+                    {
+                        "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowedIPs": [
+                            "0.0.0.0/0",
+                            "::/0"
+                        ],
+                        "endpoint": "162.159.193.10:2408"
+                    }
+                ],
+                "reserved":[159,39,171], 
+                "mtu": 1280
+            },
+            "tag": "wireguard"
+        },
+    {
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIP",
+"fragment": {
+          "packets": "tlshello",
+          "length": "100-200",
+          "interval": "10-20"
+        }
+      },
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
+        }
+      },
+      "tag": "block"
+    },
+    {
+      "protocol": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "inboundTag": [
+          "dns-in"
+        ],
+        "outboundTag": "dns-out",
+        "type": "field"
+      }
+    ]
+  }
+}
