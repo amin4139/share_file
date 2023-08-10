@@ -48,12 +48,8 @@
         "tag": "dns_fakeip",
         "address": "fakeip",
         "strategy": "ipv4_only"
-      },
-      {
-        "address": "fakedns://198.18.0.0/15",
-        "strategy": "ipv4_only",
-        "tag": "dns-fake"
-      }
+    }
+      
     ],
     "rules": [
       {
