@@ -67,7 +67,7 @@
     {
             "protocol": "wireguard",
             "settings": {
-                "secretKey": "private",
+                "secretKey": "xxxxxxxxxxxx",
                 "address": [
                     "172.16.0.2/32",
                     "2606:4700:110:8998:e352:ba32:f6c3:e61e/128"
