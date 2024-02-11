@@ -1,0 +1,179 @@
+{
+"dns": {
+
+"hosts": {
+
+"dns.adguard-dns.com": [
+
+"94.140.14.14",
+
+"94.140.15.15"
+
+],
+
+"family.adguard-dns.com": [
+
+"94.140.14.15",
+
+"94.140.15.16"
+
+]
+
+},
+
+"servers": [
+
+"https://dns.adguard-dns.com/dns-query",
+
+"https://family.adguard-dns.com/dns-query"
+
+],
+
+"tag": "dns"
+
+},
+  
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "userLevel": 8
+      },
+      "sniffing": {
+        "destOverride": [
+          "fakedns"
+        ],
+        "enabled": true
+      },
+      "tag": "socks"
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {
+        "userLevel": 8
+      },
+      "tag": "http"
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 10853,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "1.1.1.1",
+        "network": "tcp,udp",
+        "port": 53
+      },
+      "tag": "dns-in"
+    }
+  ],
+  "log": {
+    "loglevel": "warning"
+  },
+  "outbounds": [
+    {
+            "protocol": "wireguard",
+            "settings": {
+                "secretKey": "YKSdwqgtLWiKZfBunM3Q7EwdtRq2PLWOnRJIwyLugnE=",
+                "address": [
+                    "172.16.0.2/32",
+                    "2606:4700:110:8ae9:82dd:4e11:d7a7:b355/128"
+                ],
+                "peers": [
+    
+ {
+                        "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowedIPs": [
+                            "0.0.0.0/0",
+                            "::/0"
+                        ],
+ "keepAlive": 20,
+                        "endpoint": "engage.cloudflareclient.com:5956"
+                    }
+
+                ],
+                 "reserved": [63,200,232],
+                "mtu": 1280
+            },
+ 
+            "tag": "wireguard"
+        },
+
+           
+    {
+      "tag": "fragment",
+      "protocol": "freedom",
+"sockopt": {
+          "dialerProxy": "fragment2"
+        },
+      "settings": {
+        "fragment": {
+          "packets": "tlshello",
+          "length": "10-20",
+          "interval": "10-20"
+        }
+      }
+      
+    },
+{
+      "tag": "fragment2",
+      "protocol": "freedom",
+      "settings": {
+        "fragment": {
+          "packets": "1-1",
+          "length": "3-5",
+          "interval": "5"
+        }
+      }
+     
+    },
+{
+      "protocol": "dns",
+ "sockopt": {
+          "dialerProxy": "fragment2",
+          "tcpKeepAliveIdle": 100,
+          "mark": 255
+        },
+      "tag": "dns-out"
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
+        }
+      }
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "inboundTag": [
+          "dns-in"
+        ],
+        "outboundTag": "dns-out",
+        "type": "field"
+      },
+      {
+        "ip": [
+          "1.1.1.1"
+        ],
+        "outboundTag": "proxy",
+        "port": "53",
+        "type": "field"
+      }
+    ]
+  }
+}
