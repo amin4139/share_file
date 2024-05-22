@@ -101,7 +101,7 @@
       "tag": "select",
       "outbounds": [
         "auto",
-        "u0",
+        
         "u1",
         "u2",
         "u3",
@@ -115,7 +115,7 @@
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "u0",
+        
         "u1",
         "u2",
         "u3",
@@ -126,29 +126,6 @@
       "url": "http://cp.cloudflare.com/",
       "interval": "10m0s",
       "idle_timeout": "1h40m0s"
-    },
-    {
-      "type": "wireguard",
-      "tag": "u0",
-      "reuse_addr": true,
-      "connect_timeout": "5s",
-      "tcp_fast_open": true,
-      "udp_fragment": true,
-      "fallback_delay": "300ms",
-      "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8ed3:f932:3d08:f6de:34d1/128"
-      ],
-      "private_key": "GLo8BVmxMvhkEkoPVHbBxsdCDuaLIe46ekBTChPd9GY=",
-      "server": "162.159.195.133.ipr.ircf.space",
-      "server_port": 880,
-      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "reserved": "SvFJ",
-      "mtu": 1280,
-      "network": "tcp",
-      "fake_packets": "8-15",
-      "fake_packets_size": "40-100",
-      "fake_packets_delay": "20-250"
     },
     {
       "type": "wireguard",
