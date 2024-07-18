@@ -14,3 +14,7 @@ https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list12.t
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list13.txt
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list14.txt
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list15.txt
+https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list16.txt
+https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list17.txt
+https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list18.txt
+https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list19.txt
