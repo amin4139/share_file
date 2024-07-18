@@ -112,7 +112,9 @@
         "Warp 5",
         "Warp 6",
         "Warp 7",
-        "Warp 8"
+        "Warp 8",
+        "Warp 9",
+        "Warp 10"
       ],
       "default": "auto"
     },
@@ -120,14 +122,16 @@
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "Warp 1",
+          "Warp 1",
         "Warp 2",
         "Warp 3",
         "Warp 4",
         "Warp 5",
         "Warp 6",
         "Warp 7",
-        "Warp 8"
+        "Warp 8",
+        "Warp 9",
+        "Warp 10"
       ],
       "url": "http://connectivitycheck.gstatic.com/generate_204",
       "interval": "10m0s",
@@ -282,6 +286,44 @@
       "mtu": 1306,
       "fake_packets_mode": "m4",
       "fake_packets": "80-150",
+      "fake_packets_size": "80-150",
+      "fake_packets_delay": "20-25"
+    },
+ {
+      "type": "wireguard",
+      "tag": "Warp 9",
+      "domain_strategy": "prefer_ipv4",
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:8630:1cfa:2c27:a320:34cf/128"
+      ],
+      "private_key": "wHIM7G1x3zNXbquNJxO0V1248I02jsgnJF/KSfDJXUY=",
+      "server": "KhafaN.ircF.spAce",
+      "server_port": 7281,
+      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+      "reserved": "nA6q",
+      "mtu": 1306,
+      "fake_packets_mode": "m4",
+      "fake_packets": "80-150",
+      "fake_packets_size": "80-150",
+      "fake_packets_delay": "20-25"
+    },
+ {
+      "type": "wireguard",
+      "tag": "Warp 10",
+      "domain_strategy": "prefer_ipv4",
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:87cd:11d1:9c5b:ec0f:1f1e/128"
+      ],
+      "private_key": "EHrQ3mMv6K++5vidZPziwe0oxeWFq/Fb9AJ49tzIW3w=",
+      "server": "162-159-192-6.sslip.io",
+      "server_port": 928,
+      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+      "reserved": "c9vC",
+      "mtu": 1306,
+      "fake_packets": "80-150",
+      "fake_packets_mode": "m4",
       "fake_packets_size": "80-150",
       "fake_packets_delay": "20-25"
     },
