@@ -147,6 +147,7 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "05Pf",
       "mtu": 1340,
+      "fake_packets_mode": "m4",
       "fake_packets": "8-15",
       "fake_packets_size": "40-100",
       "fake_packets_delay": "20-250"
@@ -165,6 +166,7 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "idBT",
       "mtu": 1340,
+      "fake_packets_mode": "m4",
       "fake_packets": "8-15",
       "fake_packets_size": "40-100",
       "fake_packets_delay": "20-250"
@@ -183,6 +185,7 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "lcKa",
       "mtu": 1340,
+      "fake_packets_mode": "m4",
       "fake_packets": "8-15",
       "fake_packets_size": "40-100",
       "fake_packets_delay": "20-250"
@@ -201,6 +204,7 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "RG/l",
       "mtu": 1306,
+      "fake_packets_mode": "m4",
       "fake_packets": "80-150",
       "fake_packets_size": "80-150",
       "fake_packets_delay": "20-25"
@@ -219,9 +223,10 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "Cd2T",
       "mtu": 1306,
-      "fake_packets": "8-15",
-      "fake_packets_size": "40-100",
-      "fake_packets_delay": "20-250"
+      "fake_packets_mode": "m4",
+      "fake_packets": "80-150",
+      "fake_packets_size": "80-150",
+      "fake_packets_delay": "20-25"
     },
     {
       "type": "wireguard",
@@ -238,6 +243,7 @@
       "reserved": "c9vC",
       "mtu": 1306,
       "fake_packets": "80-150",
+      "fake_packets_mode": "m4",
       "fake_packets_size": "80-150",
       "fake_packets_delay": "20-25"
     },
@@ -255,6 +261,7 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "gebS",
       "mtu": 1306,
+      "fake_packets_mode": "m4",
       "fake_packets": "80-150",
       "fake_packets_size": "80-150",
       "fake_packets_delay": "20-25"
@@ -273,6 +280,7 @@
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
       "reserved": "nA6q",
       "mtu": 1306,
+      "fake_packets_mode": "m4",
       "fake_packets": "80-150",
       "fake_packets_size": "80-150",
       "fake_packets_delay": "20-25"
