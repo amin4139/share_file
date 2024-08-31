@@ -111,9 +111,10 @@
         127,90,114
       ],
       "mtu": 1280,
-        "fake_packets": "8-15",
-      "fake_packets_size": "40-100",
-      "fake_packets_delay": "20-250"
+         "fake_packets": "20-35",
+      "fake_packets_size": "5-35",
+      "fake_packets_delay": "5-35",
+      "fake_packets_mode": "m4"
     },
     {
       "type": "wireguard",
@@ -130,9 +131,10 @@
        133,87,18
       ],
       "mtu": 1280,
-        "fake_packets": "8-15",
-      "fake_packets_size": "40-100",
-      "fake_packets_delay": "20-250"
+         "fake_packets": "20-35",
+      "fake_packets_size": "5-35",
+      "fake_packets_delay": "5-35",
+      "fake_packets_mode": "m4"
     },
     {
       "type": "dns",
