@@ -4,8 +4,8 @@
    "type": "wireguard",
    "tag": "u0",
    "local_address": [
-    "172.16.0.2/32",
-    "2606:4700:110:8acb:f923:ead3:7c57:3122/16"
+    "172.16.0.2/0",
+    "2606:4700:110:8acb:f923:ead3:7c57:3122/0"
    ],
    "private_key": "YLLznV1dk/DMeSkrhXmvN+bdh/XXr1UZMp5iPXLgGUg=",
    "server": "162.159.195.82",
@@ -23,8 +23,8 @@
    "tag": "u1",
    "detour": "u0",
    "local_address": [
-    "172.16.0.2/32",
-    "2606:4700:110:8f1c:21c9:9183:b65b:bde4/16"
+    "172.16.0.2/0",
+    "2606:4700:110:8f1c:21c9:9183:b65b:bde4/0"
    ],
    "private_key": "OC8byGVfFaoLeBmYy0GSmbeeT9oQdo/PvJyw69CufWU=",
    "server": "162.159.195.82",
